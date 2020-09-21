@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: hello-java
-        image: docker.pkg.github.com/jmgrimes/hello-java/hello-java:2020.38.0
+        image: docker.pkg.github.com/jmgrimes/hello-java/hello-java:v2020.38.0
         livenessProbe:
           httpGet:
             path: /healthcheck
