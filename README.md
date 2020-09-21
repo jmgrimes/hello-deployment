@@ -59,6 +59,12 @@ configuration.  Once you have your personal access token, run the following:
 
 ```shell
 docker login docker.pkg.github.com -u <YOUR_GITHUB_USERNAME_OR_ORGANIZATION>
+
+kubectl create ns hello
+kubectl create secret generic registry-credentials \
+    --from-file=.dockerconfigjson=<path/to/.docker/config.json> \
+    --type=kubernetes.io/dockerconfigjson \
+    --namespace=hello
 ```
 
 ## Starting Up Flux
