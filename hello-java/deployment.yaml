@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-java
+  labels:
+    app: hello-java
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-java
+  template:
+    metadata:
+      labels:
+        app: hello-java
+    spec:
+      containers:
+      - name: hello-java
+        image: docker.pkg.github.com/jmgrimes/hello-java/hello-java:2020.38.0
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 8081
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        ports:
+        - name: service-http
+          containerPort: 8080
+        - name: admin-http
+          containerPort: 8081
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 250m
+          limits:
+            memory: 512Mi
+            cpu: 500m
+        volumeMounts:
+        - name: appconf
+          path: /app/conf
+      volumes:
+      - name: appconf
+        configMap:
+          name: hello-java
