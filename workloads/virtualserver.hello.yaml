@@ -6,6 +6,13 @@ metadata:
 spec:
   host: localhost
   routes:
+  - path: ~ /hello-go/?(.*)
+    action:
+      proxy:
+        upstream: hello-go
+        requestHeaders:
+          pass: true
+        rewritePath: /$1
   - path: ~ /hello-java/?(.*)
     action:
       proxy:
@@ -16,4 +23,7 @@ spec:
   upstreams:
   - name: hello-java
     service: hello-java
+    port: 80
+  - name: hello-go
+    service: hello-go
     port: 80
