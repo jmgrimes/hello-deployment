@@ -104,7 +104,11 @@ fluxctl sync --k8s-fwd-ns flux
 
 ## Accessing the Application
 
-The application is running on the "localhost" virtual server at the /hello-java 
-path.  You can send a GET request to /hello-java/hello-world for the default greeting, 
-or you can send a GET request to /hello-java/hello-world?name=YourNameHere to 
-get a personalized message.
+The application is running on the "localhost" virtual server. There are two different 
+applications running at two different paths.  At the /hello-java 
+path is the [Hello Java](https://www.github.com/jmgrimes/hello-java) application, and 
+at the /hello-go path is the [Hello Go](https://www.github.com/jmgrimes/hello-go) 
+application.  You can send a GET request to /hello-java/hello-world or 
+/hello-go/hello-world for the default greeting, or you can send a GET request to 
+/hello-java/hello-world?name=YourNameHere or /hello-go/hello-world?name=YourNameHere 
+to get a personalized message.
