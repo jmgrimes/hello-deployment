@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: hello-go
-        image: docker.pkg.github.com/jmgrimes/hello-go/hello-go:v2020.39.0
+        image: docker.pkg.github.com/jmgrimes/hello-go/hello-go:v2020.39.1
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -39,5 +39,12 @@ spec:
           limits:
             memory: 512Mi
             cpu: 500m
+        volumeMounts:
+        - name: appconf
+          mountPath: /app/conf
       imagePullSecrets:
         - name: registry-credentials
+      volumes:
+      - name: appconf
+        configMap:
+          name: hello-go
