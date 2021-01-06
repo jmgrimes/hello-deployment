@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: hello-java
-        image: docker.pkg.github.com/jmgrimes/hello-java/hello-java:v2021.01.1
+        image: docker.pkg.github.com/jmgrimes/hello-java/hello-java:v2021.01.2
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
