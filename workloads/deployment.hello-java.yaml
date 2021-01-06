@@ -49,7 +49,7 @@ spec:
         volumeMounts:
         - name: appconf
           mountPath: /app/conf
-      - name: opentelemetry-sidecar
+      - name: otel-sidecar
         image: otel/opentelemetry-collector:0.17.0
         imagePullPolicy: IfNotPresent
         resources:
