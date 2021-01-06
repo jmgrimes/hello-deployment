@@ -28,8 +28,8 @@ data:
         metrics:
           receivers: [otlp]
           processors: [batch/metrics]
-          exporters: [logging]
+          exporters: [otlp]
         traces:
           receivers: [otlp]
           processors: [batch/traces]
-          exporters: [logging]
+          exporters: [otlp]
