@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-java
   namespace: hello
+  name: hello-java
   labels:
     app: hello-java
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: hello-java
@@ -47,9 +47,9 @@ spec:
             memory: 512Mi
             cpu: 512m
         volumeMounts:
-        - name: appconf
+        - name: application-config
           mountPath: /app/conf
-      - name: otel-sidecar
+      - name: opentelemetry-collector
         image: otel/opentelemetry-collector:0.17.0
         imagePullPolicy: IfNotPresent
         resources:
@@ -60,14 +60,20 @@ spec:
             memory: 32Mi
             cpu: 32m
         volumeMounts:
-        - name: otelconf
+        - name: opentelemetry-config
           mountPath: /etc/otel
       imagePullSecrets:
         - name: registry-credentials
       volumes:
-      - name: appconf
+      - name: application-config
         configMap:
           name: hello-java
-      - name: otelconf
+          items:
+          - key: application-config
+            path: application.yaml
+      - name: opentelemetry-config
         configMap:
-          name: hello-otel-sidecar
+          name: hello-java
+          items:
+          - key: opentelemetry-config
+            path: config.yaml

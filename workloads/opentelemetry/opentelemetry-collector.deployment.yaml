@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: opentelemetry
+  name: opentelemetry-collector
+  labels:
+    app: opentelemetry-collector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opentelemetry-collector
+  template:
+    metadata:
+      labels:
+        app: opentelemetry-collector
+    spec:
+      containers:
+      - name: opentelemetry-collector
+        image: otel/opentelemetry-collector:0.17.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: otlp
+            containerPort: 55680
+        resources:
+          limits:
+            memory: 512Mi
+            cpu:  256m
+          requests:
+            memory: 32Mi
+            cpu: 32m
+        volumeMounts:
+        - name: opentelemetry-config
+          mountPath: /etc/otel
+      imagePullSecrets:
+        - name: registry-credentials
+      volumes:
+      - name: opentelemetry-config
+        configMap:
+          name: opentelemetry-collector
+          items:
+          - key: opentelemetry-config
+            path: config.yaml

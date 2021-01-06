@@ -1,8 +1,8 @@
 apiVersion: k8s.nginx.org/v1
 kind: VirtualServer
 metadata:
-  name: hello
-  namespace: hello
+  namespace: default
+  name: localhost
 spec:
   host: localhost
   routes:
@@ -22,8 +22,8 @@ spec:
         rewritePath: /$1
   upstreams:
   - name: hello-java
-    service: hello-java
+    service: hello:hello-java
     port: 80
   - name: hello-go
-    service: hello-go
+    service: hello:hello-go
     port: 80

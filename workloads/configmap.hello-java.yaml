@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: hello-java
-  namespace: hello
-data:
-  application.yaml: |
-    template: Hello, %s!
-    defaultName: Stranger

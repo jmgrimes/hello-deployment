@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-go
   namespace: hello
+  name: hello-go
   labels:
     app: hello-go
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: hello-go
@@ -40,11 +40,14 @@ spec:
             memory: 512Mi
             cpu: 500m
         volumeMounts:
-        - name: appconf
+        - name: application-config
           mountPath: /app/conf
       imagePullSecrets:
         - name: registry-credentials
       volumes:
-      - name: appconf
+      - name: application-config
         configMap:
           name: hello-go
+          items:
+          - key: application-config
+            path: application.yaml
