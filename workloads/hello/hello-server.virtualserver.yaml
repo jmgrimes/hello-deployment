@@ -1,8 +1,8 @@
 apiVersion: k8s.nginx.org/v1
 kind: VirtualServer
 metadata:
-  namespace: default
-  name: localhost
+  namespace: hello
+  name: hello-server
 spec:
   host: localhost
   routes:
