@@ -21,8 +21,8 @@ spec:
         - name: OTEL_EXPORTER
           value: otlp
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.namespace=hello,service.name=hello-go,service.version=v2021.01.0
-        image: docker.pkg.github.com/jmgrimes/hello-go/hello-go:v2021.01.0
+          value: service.namespace=hello,service.name=hello-go,service.version=v2021.01.1
+        image: docker.pkg.github.com/jmgrimes/hello-go/hello-go:v2021.01.1
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
