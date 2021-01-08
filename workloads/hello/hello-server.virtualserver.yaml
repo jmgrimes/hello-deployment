@@ -22,8 +22,8 @@ spec:
         rewritePath: /$1
   upstreams:
   - name: hello-java
-    service: hello:hello-java
+    service: hello-java
     port: 80
   - name: hello-go
-    service: hello:hello-go
+    service: hello-go
     port: 80
