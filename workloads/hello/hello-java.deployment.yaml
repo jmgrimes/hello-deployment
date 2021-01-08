@@ -18,10 +18,10 @@ spec:
       containers:
       - name: hello-java
         env:
-          - name: OTEL_EXPORTER
-            value: otlp
-          - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.namespace=hello,service.name=hello-java,service.version=v2021.01.3
+        - name: OTEL_EXPORTER
+          value: otlp
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: service.namespace=hello,service.name=hello-java,service.version=v2021.01.3
         image: docker.pkg.github.com/jmgrimes/hello-java/hello-java:v2021.01.3
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -40,12 +40,12 @@ spec:
             path: /healthcheck
             port: 8081
         resources:
-          requests:
-            memory: 128Mi
-            cpu: 256m
           limits:
             memory: 512Mi
             cpu: 512m
+          requests:
+            memory: 128Mi
+            cpu: 256m
         volumeMounts:
         - name: application-config
           mountPath: /app/conf
