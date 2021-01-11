@@ -79,6 +79,7 @@ fluxctl install \
   --git-user <YOUR_GITHUB_USERNAME_OR_ORGANIZATION> \
   --git-email=<YOUR_GITHUB_USERNAME_OR_ORGANIZATION>@users.noreply.github.com \
   --git-url git@github.com:<YOUR_GITHUB_USERNAME_OR_ORGANIZATION>/hello-deployment \
+  --git-branch main \
   --namespace=flux | kubectl apply -f -
 
 kubectl rollout status deployment/flux --namespace flux
